@@ -25,20 +25,63 @@
                 Console.WriteLine(" 3. Exit");
 
                 Console.WriteLine(decoration + "\n");
-                
-                int option;
 
                 Console.Write("Select an option: ");
 
-                if (!int.TryParse(Console.ReadLine(), out option))
+                if (!int.TryParse(Console.ReadLine(), out int option))
                 {
-                    Console.WriteLine("\n|- Invalid option. Please, try again. Press any key to retry -|");
+                    Console.WriteLine(
+                        "\n|- Invalid option. Press any key to retry -|"
+                    );
                     Console.ReadLine();
 
                     option = SelectOption();
                 }
 
                 return option;
+            }
+
+            public static void AddWord()
+            {
+                Console.Clear();
+
+                Utils.DrawGameTitle();
+
+                Console.Write("\nType the word you want to add. Max 20 chars.\n");
+
+                string decoration = new('=', 44);
+
+                Console.WriteLine(decoration);
+
+                Console.Write("Word: ");
+
+                string word = Console.ReadLine() ?? "";
+                bool isValidWord = Utils.IsValidWord(word);
+
+                if (isValidWord)
+                {
+                    string filePath = Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                        "Words.csv"
+                    );
+
+                    using (StreamWriter writer = File.AppendText(filePath))
+                    {
+                        writer.Write($";{word}");
+                    }
+
+                    Console.WriteLine("\n|- Word added successfully! Press any key to continue -|");
+                    Console.ReadLine();
+                }
+                else
+                {
+                    Console.WriteLine(
+                        "\n|- Invalid word. Press any key to retry -|"
+                    );
+                    Console.ReadLine();
+
+                    AddWord();
+                }
             }
         }
     }

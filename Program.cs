@@ -5,6 +5,7 @@
         static void Main()
         {
             Console.Title = "Hangman - Created by Ciro Schapert";
+
             int option = Game.SelectOption();
             switch (option)
             {
@@ -12,7 +13,7 @@
                     Utils.GetWordsList();
                     break;
                 case 2:
-                    Console.WriteLine("Add word");
+                    Game.AddWord();
                     break;
                 case 3:
                     Game.ExitGame(); 

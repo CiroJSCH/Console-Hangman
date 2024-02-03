@@ -52,6 +52,19 @@
 
                 writer.Close();
             }
+
+            public static bool IsValidWord(string word)
+            {
+                if (word.Length > 20 || word == string.Empty) return false;
+
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (!char.IsLetter(word[i])) return false;
+                }
+
+                return true;
+            }
+
         }
     }
 }
