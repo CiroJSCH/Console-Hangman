@@ -6,9 +6,18 @@
         {
             public static void StartGame()
             {
+                Console.Clear();
+
                 string randomWord = Utils.GetRandomWord();
-                Console.WriteLine(randomWord);
+
+                /*foreach (char letter in randomWord)
+                {
+                    Console.Write("_ ");
+                }*/
+
+                DrawHangman(7);
             }
+
             public static void ExitGame()
             {
                 Console.WriteLine("\nThanks for playing! Goodbye :)");
@@ -35,9 +44,7 @@
 
                 if (!int.TryParse(Console.ReadLine(), out int option))
                 {
-                    Console.WriteLine(
-                        "\n|- Invalid option. Press any key to retry -|"
-                    );
+                    Console.WriteLine("\n|- Invalid option. Press any key to retry -|");
                     Console.ReadLine();
 
                     option = SelectOption();
@@ -80,13 +87,29 @@
                 }
                 else
                 {
-                    Console.WriteLine(
-                        "\n|- Invalid word. Press any key to retry -|"
-                    );
+                    Console.WriteLine("\n|- Invalid word. Press any key to retry -|");
                     Console.ReadLine();
 
                     AddWord();
                 }
+            }
+
+            public static void DrawHangman(int attemps)
+            {
+                Console.WriteLine("   __________");
+                Console.WriteLine("   |        ¿");
+                Console.WriteLine($"   |        {(attemps >= 1 ? "O" : "")}");
+
+                if (attemps == 7)
+                    Console.WriteLine("   |       ---");
+
+                Console.WriteLine(
+                    $"   |       {(attemps >= 3 ? "\\" : "")}{(attemps >= 2 ? "|" : "")}{(attemps >= 4 ? "/" : "")}"
+                );
+                Console.WriteLine($"   |        {(attemps >= 2 ? "|" : "")}");
+                Console.WriteLine($"   |       {(attemps >= 5 ? "/" : "")} {(attemps >= 6 ? "\\" : "")}");
+                Console.WriteLine("   |");
+                Console.WriteLine(" __|__");
             }
         }
     }
