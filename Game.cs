@@ -12,6 +12,8 @@
 
             public static int SelectOption()
             {
+                Console.Clear();
+
                 Utils.DrawGameTitle();
 
                 string decoration = new('=', 15);
@@ -23,10 +25,20 @@
                 Console.WriteLine(" 3. Exit");
 
                 Console.WriteLine(decoration + "\n");
+                
+                int option;
 
                 Console.Write("Select an option: ");
 
-                return Convert.ToInt32(Console.ReadLine());
+                if (!int.TryParse(Console.ReadLine(), out option))
+                {
+                    Console.WriteLine("\n|- Invalid option. Please, try again. Press any key to retry -|");
+                    Console.ReadLine();
+
+                    option = SelectOption();
+                }
+
+                return option;
             }
         }
     }
