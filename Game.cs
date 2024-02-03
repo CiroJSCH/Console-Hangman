@@ -9,6 +9,7 @@
                 Console.WriteLine("\nThanks for playing! Goodbye :)");
                 Environment.Exit(0);
             }
+
             public static int SelectOption()
             {
                 Utils.DrawGameTitle();
