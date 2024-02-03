@@ -10,7 +10,7 @@
             switch (option)
             {
                 case 1:
-                    Utils.GetWordsList();
+                    Game.StartGame();
                     break;
                 case 2:
                     Game.AddWord();

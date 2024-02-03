@@ -4,6 +4,11 @@
     {
         public static class Game
         {
+            public static void StartGame()
+            {
+                string randomWord = Utils.GetRandomWord();
+                Console.WriteLine(randomWord);
+            }
             public static void ExitGame()
             {
                 Console.WriteLine("\nThanks for playing! Goodbye :)");
@@ -67,7 +72,7 @@
 
                     using (StreamWriter writer = File.AppendText(filePath))
                     {
-                        writer.Write($";{word}");
+                        writer.Write($"{word};");
                     }
 
                     Console.WriteLine("\n|- Word added successfully! Press any key to continue -|");

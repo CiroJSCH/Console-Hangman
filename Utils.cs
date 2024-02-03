@@ -28,11 +28,11 @@
                     while (!reader.EndOfStream)
                     {
                         var line = reader.ReadLine();
-                        var words = line != null ? line.Split(';') : [];
+                        var words = line?.Split(';') ?? [];
 
                         foreach (var word in words)
-                        {
-                            wordsList.Add(word.Trim());
+                        {   
+                            if (word.Trim() != string.Empty) wordsList.Add(word.Trim());                          
                         }
                     }
                 }
@@ -65,6 +65,13 @@
                 return true;
             }
 
+            public static string GetRandomWord()
+            {
+                var words = GetWordsList();
+                int randomIndex = new Random().Next(0, words.Count);
+
+                return words[randomIndex];
+            }
         }
     }
 }
